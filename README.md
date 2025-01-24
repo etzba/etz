@@ -35,7 +35,7 @@ etz --version
 
 #### Installation on a mac
 
-To download the file for iOS: [etzba_darwin_amd64_v1](repo/blob/master/etzba_darwin_amd64_v1/etz)
+To download the file for mac OS: [etzba_darwin_amd64_v1](repo/blob/master/etzba_darwin_amd64_v1/etz)
 
 Move the file to `/usr/local/bin`:
 
@@ -140,15 +140,25 @@ etz --config=path/to/config.yaml
 
 #### Run etz with executions file
 
-`etz` has few more commands that can use also
+`etz` can run dedicated test with additional commands - `api`, `pg` and `file` together with an execution file with command args `--exec` as follows: 
+
+```sh
+etz api --exec=path/to/exec/file.yaml
+```
+
+`api` command run test against http service:
 
 ```sh
 etz api --auth=examples/api/gopu/secret.yaml --exec=examples/api/gopu/executions.yaml -d=8s -w=6 -r=24 --output=files/$$(date +%Y%m%d_%H%M%S)_result.json
 ```
 
+`pg` will be testing straight by connecting directly to postgres instance (`--auth` to mention auth file is needed):
+
 ```sh
 etz pg --workers=3 --auth=examples/pgsql/secret.json --exec=examples/pgsql/executions.yaml --duration=3s
 ```
+
+`file` will upload a file to an http endpoint:
 
 ```sh
 etz file --url=http://localhost:8080/docs --method=PUT --path=assets/ -w=6 -r=6 -v
@@ -174,10 +184,15 @@ These are few extended usage examples to run `etz` from cli:
 
 ``` sh
 etz --config=examples/pgsql/config.yaml
+
 etz api --auth=examples/api/gopu/secret.yaml --exec=examples/api/gopu/executions.yaml -d=8s -w=6 -r=24 --output=files/$$(date +%Y%m%d_%H%M%S)_result.json
+
 etz pg --workers=3 --auth=examples/pgsql/secret.json --exec=examples/pgsql/executions.yaml --duration=3s
+
 etz file --url=http://localhost:8080/docs --method=PUT --path=assets/ -w=6 -r=6 -v
+
 etz file --exec=examples/api/gopu/fileup.yaml -d=3s -w=1 -r=1
+
 etz api --exec=examples/api/gopu/executions.yaml -d=8s -w=4 -r=12 --output=files/$$(date +%Y%m%d_%H%M%S)_result.json
 ```
 
@@ -185,6 +200,24 @@ etz api --exec=examples/api/gopu/executions.yaml -d=8s -w=4 -r=12 --output=files
 
 #### Use authentication file
 
+Using `--auth` will allow to authenticate to an http service or sql instance.
+
+Example of postgres auth file:
+```yaml
+sql:
+  host: localhost
+  port: 5432
+  database: etzba
+  user: etzba
+  password: Pass1234
+```
+
+An example for http service auth file:
+```yaml
+apiAuth:
+  method: Bearer
+  token: XVlBzgbaiCMRAjWwhTHctcuAxhxKQFDa
+```
 
 #### Using go template
 
