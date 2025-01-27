@@ -1,8 +1,8 @@
 # etz
 
 - [Installing](#installing)
-	- [etzba darwin amd64 v1](#etzba-darwin-amd64-v1)
-    - [etzba linux amd64 v1](#etzba-linux-amd64-v1)
+	- [Linux installation](#linux-installation)
+    - [OSX Installation](#osx-installation)
 - [Configuring test cases](#configuring-test-cases)
 	- [General Config](#general-config)
     - [Executions](#executions)
@@ -16,7 +16,7 @@
     - [Examples](#examples)
 - [Advanced configurations](#advanced-configurations)
     - [Use authentication file](#use-authentication-file)
-    - [Using go template](using-go-template)
+    - [Using go template](#using-go-template)
 
 ### Installing
 
@@ -24,23 +24,21 @@ To download and install `etz`:
 
 #### Linux installation
 
-To download the file for linux: [etzba_linux_amd64_v1](repo/blob/master/etzba_linux_amd64_v1/etz)
-
-Move the file to `/usr/bin`:
+To download and install `etz` for linux:
 
 ``` sh
-mv ~/Downloads/etz /usr/bin/
+wget https://raw.githubusercontent.com/etzba/etz/master/etzba_linux_amd64_v1/etz
+sudo mv etz /usr/bin/
 etz --version
 ```
 
-#### Installation on a mac
+#### OSX Installation
 
-To download the file for mac OS: [etzba_darwin_amd64_v1](repo/blob/master/etzba_darwin_amd64_v1/etz)
-
-Move the file to `/usr/local/bin`:
+To download and install `etz` on OSX:
 
 ``` sh
-mv ~/Downloads/etz /usr/local/bin/
+wget https://raw.githubusercontent.com/etzba/etz/master/etzba_darwin_amd64_v1/etz
+sudo mv etz /usr/local/bin/
 etz --version
 ```
 
