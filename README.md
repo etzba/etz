@@ -51,20 +51,20 @@ To run `etz` a configuration or executions file is needed
 ``` yaml
 settings:
   config:
-    workers: 10   # number of workers during execution
-    rps: 2    # request per second during execution
-    duration: 3s   # execution duration
+    workers: 10                 # number of workers during execution
+    rps: 200                    # request per second during execution
+    duration: 3s                # execution duration
     output: /tmp/results.json   # results output file
-    verbose: true   # debug workers during execution    
+    verbose: true               # debug workers during execution    
 
 executions:
-  locations:    # scenario name
+  locations:                    # scenario name
     api:
     - url: http://localhost:8080/locations
       method: GET
     - url: http://localhost:8080/locations/2
       method: GET
-  files:       # scenario name
+  posts:                        # scenario name
     file:
     - url: http://localhost:8080/posts
       method: POST
@@ -92,7 +92,7 @@ api:
 `pg` command will test the performance of postgresql instance by creating an execution file for sql:
 
 ``` yaml
-sql:    # list of sql queries
+sql:                            # sql specifications
 - command: SELECT
   table: locations
   constraint: "longtitude BETWEEN 13.0 AND 15.0"
@@ -114,14 +114,14 @@ sql:    # list of sql queries
 
 `file` execution will test the performance of file upload to an api server. A `file` execution yaml example:
 
-```yaml
-file:
+``` yaml
+file:                             # file upload specifications
 - url: http://localhost:8080/posts
   method: POST
-  directory: path/posts/
+  directory: path/to/posts/       # files directory (relative to etz binary location)
 - url: http://localhost:8080/pics
   method: PUT
-  directory: images/
+  directory: path/to/images/
 ```
 
 ### Usage
@@ -147,7 +147,7 @@ etz api --exec=path/to/exec/file.yaml
 `api` command run test against http service:
 
 ```sh
-etz api --auth=examples/api/gopu/secret.yaml --exec=examples/api/gopu/executions.yaml -d=8s -w=6 -r=24 --output=files/$$(date +%Y%m%d_%H%M%S)_result.json
+etz api --auth=examples/api/gopu/secret.yaml --exec=examples/api/gopu/executions.yaml -d=8s -w=6 -r=24 --output=files/$(date +%Y%m%d_%H%M%S)_result.json
 ```
 
 `pg` will be testing straight by connecting directly to postgres instance (`--auth` to mention auth file is needed):
@@ -183,7 +183,7 @@ These are few extended usage examples to run `etz` from cli:
 ``` sh
 etz --config=examples/pgsql/config.yaml
 
-etz api --auth=examples/api/gopu/secret.yaml --exec=examples/api/gopu/executions.yaml -d=8s -w=6 -r=24 --output=files/$$(date +%Y%m%d_%H%M%S)_result.json
+etz api --auth=examples/api/gopu/secret.yaml --exec=examples/api/gopu/executions.yaml -d=8s -w=6 -r=24 --output=files/$(date +%Y%m%d_%H%M%S)_result.json
 
 etz pg --workers=3 --auth=examples/pgsql/secret.json --exec=examples/pgsql/executions.yaml --duration=3s
 
@@ -191,7 +191,7 @@ etz file --url=http://localhost:8080/docs --method=PUT --path=assets/ -w=6 -r=6 
 
 etz file --exec=examples/api/gopu/fileup.yaml -d=3s -w=1 -r=1
 
-etz api --exec=examples/api/gopu/executions.yaml -d=8s -w=4 -r=12 --output=files/$$(date +%Y%m%d_%H%M%S)_result.json
+etz api --exec=examples/api/gopu/executions.yaml -d=8s -w=4 -r=12 --output=files/$(date +%Y%m%d_%H%M%S)_result.json
 ```
 
 ### Advanced configurations
