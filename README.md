@@ -73,18 +73,18 @@ $ etz file --url=http://localhost:8080/ --method=POST --path=relative/path/to/fi
 
 `etz` can use execution or config file to build extended test cases. An example of a simple yaml execution file:
 
-```yaml
+``` yaml
 api:
 - url: http://localhost:8080/
   method: POST
   payload:
-    name: "Etz"
-    address: "Ba etzba etz 32"
+    prop1: "etz"
+    prop2: "etzba etz"
 ``` 
 
 And how to run it:
 
-```sh
+``` sh
 etz api --exec=path/to/executions.yaml
 ```
 
@@ -218,7 +218,10 @@ etz file --url=http://localhost:8080/docs --method=PUT --path=assets/ -w=6 -r=6 
 | `auth`     | str      | To use additional authentication file. |
 | `exec`     | str      | While using executions file. |
 | `config`   | str      | While using general config file. |
-| `url`      | str      | Specify api service URL for the test, instead of specifying url in the file. |
+| `url`      | str      | Specify api service URL for the test, instead of specifying url in the file. Available in `api` and `file` commands |
+| `method`   | str      | While testing http service with `api` or `file` commands, use method like: `--method=POST` |
+| `payload`  | str      | Add data in JSON string to an http requests. Available in `api` command and should be used in this way: `-j='{ "name": "Etz", "address": "Ba etzba etz 32" }'` |
+| `path`     | str      | Set files directory when using `file` command |
 | `output`   | str      | Generate a test results file in json. For example: `--output=~/results/20250123_result.json` |
 | `verbose`  | bool     | To show logs from workers while running the test. |
 
@@ -300,3 +303,85 @@ For more details: [go template](https://pkg.go.dev/text/template)
 
 ##### Built-in yaml golang templates functions
 
+To create versatile load tests, some golang template functions available to use inside the yaml file. For example, a load test could be planned as follow:
+
+```yaml
+{{ $baseUrl := printf "%s" "http://localhost:8080" }}
+{{ $slice := makeIntSlice 1 2 3 4 }}
+{{ $sumSlice := makeIntSliceBySum 100 }}
+
+settings:
+  apiAuth:
+    method: Bearer
+    token: XVlBzgbaiCMRAjWwhTHctcuAxhxKQFDa
+
+executions:
+  easy:                                           # scenario name
+    config:                                       # scenario configuration
+      workers: 5
+      rps: 20
+      duration: 30m
+      output: files/easy.json 
+    api:                                          # execution type for scenario
+    {{ range $sumSlice }}
+    - url: {{ $baseUrl }}/location
+      method: POST
+      data: 
+        name: {{ getRandStringInLength 5 }}
+        address: {{ getRandStringInLength 23 }}
+        longtitude: {{ getFloatInRange 21 90 }}
+        latitude: {{ getFloatInRange -80 10 }}
+    {{ end }}
+    {{ range $slice }}
+    - url: {{ $baseUrl }}/locations/{{ getIntInRange 250 1 }}
+      method: DELETE
+    {{ end }}
+  medium:                                          # scenario name
+    config:
+      workers: 15
+      rps: 60
+      duration: 3s
+      output: files/medium.json 
+    api:
+    {{ range $sumSlice }}
+    {{ $num := getIntInRange 250 1 }}
+    - url: {{ printf "%s/locations/%d" $baseUrl $num }}
+      method: PUT
+      data: 
+        name: {{ getRandStringInLength 5 }}
+        address: {{ getRandStringInLength 23 }}
+        longtitude: {{ getFloatInRange 21 90 }}
+        latitude: {{ getFloatInRange -80 10 }}
+    {{ end }}
+  hard:                                             # scenario name
+    config:
+      workers: 30
+      rps: 120
+      duration: 3s
+      output: files/hard.json 
+    api:
+    {{ range $sumSlice }}
+    - url: {{ $baseUrl }}/location
+      method: POST
+      data: 
+        name: {{ getRandStringInLength 5 }}
+        address: {{ getRandStringInLength 23 }}
+        longtitude: {{ getFloatInRange 21 90 }}
+        latitude: {{ getFloatInRange -80 10 }}
+    {{ end }}
+    {{ range $sumSlice }}
+    - url: {{ $baseUrl }}/locations/{{ getIntInRange 250 1 }}
+      method: GET
+    {{ end }}
+```
+Available golang functions to add to your yaml file:
+
+| Function                 | Syntax                                  | Description                |
+| ------------------------ | --------------------------------------- | -------------------------- |
+| `makeAnySlice`           | `{{ $slice := makeAnySlice }}`          |
+| `makeIntSlice`           | `{{ $slice := makeIntSlice 1 2 3 4 }}`  | To make a slice of integers
+| `makeIntSliceBySum`      | `{{ $slice := makeIntSliceBySum 250 }}` | Generate a slice from 0 - 249
+| `getUuid`                | `{{ $id := getUuid }}`                  | Generate a uuid string
+| `getIntInRange`          | `{{ $num := getIntInRange 20 5 }}`      | Get randon integer in range between maximum to minimum (func max min)
+| `getFloatInRange`        | `{{ $num := getFloatInRange 2 0 }}`     | Get a random float in range (func max min)
+| `getRandStringInLength`  | `{{ $str := getRandStringInLength 20 }}`| Get a random string in length of an integer (func int) 
