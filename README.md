@@ -2,7 +2,10 @@
 
 - [Installing](#installing)
 	- [Linux installation](#linux-installation)
-    - [OSX Installation](#osx-installation)
+  - [OSX Installation](#osx-installation)
+- [Getting started](#getting-started)
+  - [Runnig etz](#running-etz)
+  - [Use simple execution file](#use-simple-execution-file)
 - [Configuring test cases](#configuring-test-cases)
 	- [General Config](#general-config)
     - [Executions](#executions)
@@ -40,6 +43,49 @@ To download and install `etz` on OSX:
 wget https://raw.githubusercontent.com/etzba/etz/master/etzba_darwin_amd64_v1/etz
 sudo mv etz /usr/local/bin/
 etz --version
+```
+
+### Getting started
+
+In this section we are going to start running `etz` in the simplest way
+
+#### Running etz
+
+`etz` uses several sub commands: `api`, `pg` and `file`. To use `etz` without additional load test configuration for `api` (change `--url` to your http service): 
+
+```sh
+$ etz api --url=http://localhost:8080/ --method=GET
+```
+
+Additional command line args available to `api`. cli args documented here: [Cli args](#cli-args):
+```sh
+$ etz api --url=http://localhost:8080/ --method=POST -j '{ "name": "Etz", "address": "Ba etzba etz 32" }' -d 3s -w 3 -r 9
+
+$ etz api --url=http://localhost:8080/ --method=GET --output=files/result.json
+```
+
+or using `etz` to test file upload to an http server (change `--path` to your files dir and `--url` to your http service):
+```sh
+$ etz file --url=http://localhost:8080/ --method=POST --path=relative/path/to/files/
+```
+
+#### Use simple execution file
+
+`etz` can use execution or config file to build extended test cases. An example of a simple yaml execution file:
+
+```yaml
+api:
+- url: http://localhost:8080/
+  method: POST
+  payload:
+    name: "Etz"
+    address: "Ba etzba etz 32"
+``` 
+
+And how to run it:
+
+```sh
+etz api --exec=path/to/executions.yaml
 ```
 
 ### Configuring test cases
