@@ -1,5 +1,3 @@
-<div style="text-align:center"><img src="etzba.png" /></div>
-
 <p align="center">
   <img src="etzba.png" alt="Etzba"/>
 </p>
