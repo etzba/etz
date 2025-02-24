@@ -33,7 +33,7 @@ To download and install `etz` for linux:
 
 ``` sh
 wget https://raw.githubusercontent.com/etzba/etz/master/etzba_linux_amd64_v1/etz
-sudo mv etz /usr/bin/
+sudo mv etz /usr/local/bin/
 etz --version
 ```
 
