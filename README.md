@@ -1,4 +1,7 @@
-# etz
+first
+<div style="text-align:center"><img src="image.png" /></div>
+second
+![alt text](image.png)
 
 - [Installing](#installing)
 	- [Linux installation](#linux-installation)
@@ -385,3 +388,5 @@ Available golang functions to add to your yaml file:
 | `getIntInRange`          | `{{ $num := getIntInRange 20 5 }}`      | Get randon integer in range between maximum to minimum (func max min)
 | `getFloatInRange`        | `{{ $num := getFloatInRange 2 0 }}`     | Get a random float in range (func max min)
 | `getRandStringInLength`  | `{{ $str := getRandStringInLength 20 }}`| Get a random string in length of an integer (func int) 
+
+<!-- HaDewq43rTqeesd34SDFXCVwq67845SDF== -->
