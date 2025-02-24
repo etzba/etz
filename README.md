@@ -1,6 +1,6 @@
-first
 <div style="text-align:center"><img src="image.png" /></div>
-second
+
+
 ![alt text](image.png)
 
 - [Installing](#installing)
