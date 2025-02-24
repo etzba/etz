@@ -1,7 +1,4 @@
-<div style="text-align:center"><img src="image.png" /></div>
-
-
-![alt text](image.png)
+<div style="text-align:center"><img src="etzba.png" /></div>
 
 - [Installing](#installing)
 	- [Linux installation](#linux-installation)
