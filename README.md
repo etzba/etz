@@ -32,7 +32,7 @@ To download and install `etz`:
 To download and install `etz` for linux:
 
 ``` sh
-wget https://raw.githubusercontent.com/etzba/etz/master/etzba_linux_amd64_v1/etz
+wget https://raw.githubusercontent.com/etzba/etz/master/v0.0.3/etzba_linux_amd64_v1/etz
 sudo mv etz /usr/local/bin/
 etz --version
 ```
@@ -42,7 +42,7 @@ etz --version
 To download and install `etz` on OSX:
 
 ``` sh
-wget https://raw.githubusercontent.com/etzba/etz/master/etzba_darwin_amd64_v1/etz
+wget https://raw.githubusercontent.com/etzba/etz/master/v0.0.3/etzba_darwin_amd64_v1/etz
 sudo mv etz /usr/local/bin/
 etz --version
 ```
