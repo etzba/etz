@@ -5,10 +5,6 @@ export VERSION="v0.0.4-rc1"
 export BRANCH="release-v0-0-4-rc1"
 export SOURCE="../etzba"
 
-git remote set-url origin git@github-etzba:etzba/etz.git
-git config user.name "etzba"
-git config user.email "support@etzba.com"
-
 mkdir -p "$VERSION"
 cp -rv $SOURCE/dist/* $VERSION/
 git checkout -b $BRANCH && \
