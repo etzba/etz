@@ -1,0 +1,4 @@
+bcfca0483e8a6bb0ef608dd2b921f785cf8319748c80be08cdcdced139b412a6  etzba_0.0.4-rc1_darwin_amd64.tar.gz
+fbd48d2455edf6849dc722d2614738d22729ad5aeaf3b3b284d746c0f0ff53e5  etzba_0.0.4-rc1_darwin_arm64.tar.gz
+29a18bafe211bef5a717ca386a77983194e54b8654914a4c295a86614206a06c  etzba_0.0.4-rc1_linux_amd64.tar.gz
+e0d6dd7edbeedc97c9baa028167d104100db0a27727df592e29aaf081ae735bf  etzba_0.0.4-rc1_linux_arm64.tar.gz
