@@ -10,10 +10,10 @@
   - [Use simple execution file](#use-simple-execution-file)
 - [Configuring test cases](#configuring-test-cases)
 	- [General Config](#general-config)
-    - [Executions](#executions)
-        - [Api](#api)
-        - [Sql](#sql)
-        - [File](#file)
+  - [Executions](#executions)
+      - [Api](#api)
+      - [Sql](#sql)
+      - [File](#file)
 - [Usage](#usage)
 	- [Run etz with general config](#run-etz-with-general-config)
     - [Run etz with executions file](#run-etz-with-executions-file)
@@ -32,15 +32,15 @@ To download and install `etz`:
 To download and install `etz` for linux:
 
 ``` sh
-wget https://raw.githubusercontent.com/etzba/etz/master/v0.0.3/etzba_linux_amd64_v1/etz
+wget https://raw.githubusercontent.com/etzba/etz/master/v0.0.4-rc4/etzba_linux_amd64_v1/etz
 sudo mv etz /usr/local/bin/
 etz --version
 ```
 
 To verify the binary:
 ```sh
-curl -LO https://raw.githubusercontent.com/etzba/etz/master/v0.0.4-rc1/etz
-curl -LO https://raw.githubusercontent.com/etzba/etz/master/v0.0.4-rc1/etz.sig
+curl -LO https://raw.githubusercontent.com/etzba/etz/master/v0.0.4-rc4/etzba_linux_amd64_v1/etz
+curl -LO https://raw.githubusercontent.com/etzba/etz/master/v0.0.4-rc4/etzba_linux_amd64_v1/etz.sig
 curl -LO https://raw.githubusercontent.com/etzba/etz/master/pubkey.asc
 
 gpg --import pubkey.asc
@@ -89,7 +89,7 @@ $ etz file --url=http://localhost:8080/ --method=POST --path=relative/path/to/fi
 api:
 - url: http://localhost:8080/
   method: POST
-  payload:
+  data:
     prop1: "etz"
     prop2: "etzba etz"
 ``` 
