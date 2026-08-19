@@ -12,7 +12,3 @@ git checkout -b $BRANCH && \
     git add $VERSION/ && \
     git commit -m "Chore(Release): New version $VERSION release" && \
     git push origin HEAD
-
-curl -LO https://raw.githubusercontent.com/etzba/etz/master/v0.0.4-rc4/etzba_linux_amd64_v1/etz
-curl -LO https://raw.githubusercontent.com/etzba/etz/master/v0.0.4-rc4/etzba_linux_amd64_v1/etz.sig
-curl -LO https://raw.githubusercontent.com/etzba/etz/master/pubkey.asc
