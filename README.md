@@ -27,7 +27,7 @@
 
 To download and install `etz`:  
 
-#### Linux installation
+#### Linux
 
 To download and install `etz` for linux:
 
@@ -35,6 +35,16 @@ To download and install `etz` for linux:
 wget https://raw.githubusercontent.com/etzba/etz/master/v0.0.3/etzba_linux_amd64_v1/etz
 sudo mv etz /usr/local/bin/
 etz --version
+```
+
+To verify the binary:
+```sh
+curl -LO https://raw.githubusercontent.com/etzba/etz/master/v0.0.4-rc1/etz
+curl -LO https://raw.githubusercontent.com/etzba/etz/master/v0.0.4-rc1/etz.sig
+curl -LO https://raw.githubusercontent.com/etzba/etz/master/pubkey.asc
+
+gpg --import pubkey.asc
+gpg --verify etz.sig etz
 ```
 
 #### OSX Installation

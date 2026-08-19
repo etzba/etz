@@ -6,8 +6,9 @@ export BRANCH="release-v0-0-4-rc1"
 export SOURCE="../etzba"
 
 mkdir -p "$VERSION"
-cp -rv $SOURCE/dist/* $VERSION/
-git checkout -b $BRANCH && \
+cp -rv $SOURCE/dist/ $VERSION/
+
+git checkout $BRANCH && \
     git add $VERSION/ && \
     git commit -m "Chore(Release): New version $VERSION release" && \
     git push origin HEAD
