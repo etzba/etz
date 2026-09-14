@@ -32,15 +32,16 @@ To download and install `etz`:
 To download and install `etz` for linux:
 
 ``` sh
-wget https://raw.githubusercontent.com/etzba/etz/master/v0.0.4-rc4/etzba_linux_amd64_v1/etz
+wget https://raw.githubusercontent.com/etzba/etz/master/v0.0.4/etzba_linux_amd64_v1/etz
+chmod +x etz
 sudo mv etz /usr/local/bin/
 etz --version
 ```
 
 To verify the binary:
 ```sh
-curl -LO https://raw.githubusercontent.com/etzba/etz/master/v0.0.4-rc4/etzba_linux_amd64_v1/etz
-curl -LO https://raw.githubusercontent.com/etzba/etz/master/v0.0.4-rc4/etzba_linux_amd64_v1/etz.sig
+curl -LO https://raw.githubusercontent.com/etzba/etz/master/v0.0.4/etzba_linux_amd64_v1/etz
+curl -LO https://raw.githubusercontent.com/etzba/etz/master/v0.0.4/etzba_linux_amd64_v1/etz.sig
 curl -LO https://raw.githubusercontent.com/etzba/etz/master/pubkey.asc
 
 gpg --import pubkey.asc
