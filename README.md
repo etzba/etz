@@ -53,7 +53,8 @@ gpg --verify etz.sig etz
 To download and install `etz` on OSX:
 
 ``` sh
-wget https://raw.githubusercontent.com/etzba/etz/master/v0.0.3/etzba_darwin_amd64_v1/etz
+wget https://raw.githubusercontent.com/etzba/etz/master/v0.0.4/etzba_darwin_amd64_v1/etz
+chmod +x etz
 sudo mv etz /usr/local/bin/
 etz --version
 ```
