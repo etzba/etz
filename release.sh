@@ -1,8 +1,8 @@
 #!/bin/bash
 #
 # DEST is the destination directory where the repository is saved locally
-export VERSION="v0.0.4"
-export BRANCH="release-v0-0-4"
+export VERSION="v0.0.5-rc1"
+export BRANCH="release-v0-0-5-rc1"
 export SOURCE="../etzba"
 
 mkdir -p "$VERSION"
